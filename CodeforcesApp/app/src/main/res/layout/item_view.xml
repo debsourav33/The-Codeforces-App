@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:elevation="8dp"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0.0px"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    app:cardElevation="10dp"
+    app:cardPreventCornerOverlap="false"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="→ Pay Attention"
+            android:textColor="#3B5998"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif-condensed"
+
+            />
+
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="10dp"
+        android:background="#c0c0c0"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Before Contest"
+            android:textAlignment="center"
+            android:textColor="#3B5998"
+            android:textSize="22sp"
+            android:fontFamily="@font/helvebd"
+
+            />
+
+
+    <TextView
+        android:id="@+id/txt1"
+        android:textColor="#0000cc"
+        android:layout_width="match_parent"
+
+        android:text="Educational Codeforces Round 92 (Rated for Div. 2)
+"
+        android:textSize="25sp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        />
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txtStartsIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Starts In"
+            android:textSize="15sp"
+            android:layout_margin="3dp"
+            android:textAlignment="center"
+            android:textColor="#058B00"
+            />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txtInProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="In Progress"
+            android:textSize="15sp"
+            android:layout_margin="3dp"
+            android:textAlignment="center"
+            android:textColor="#FF0A0A"
+            />
+
+    <TextView
+        android:id="@+id/txt2"
+        android:textColor="#777"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fine time"
+        android:textAlignment="center"
+        />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+</RelativeLayout>

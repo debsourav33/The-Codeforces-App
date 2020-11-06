@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+ <item android:title="Go to listView" android:id="@+id/menuList"></item>
+ <item android:title="Help" android:id="@+id/menuHelp"></item>
+ <item android:title="Exit" android:id="@+id/menuExit" app:showAsAction="ifRoom" ></item>
+</menu>

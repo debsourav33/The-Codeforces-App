@@ -1,0 +1,89 @@
+package com.example.codeforcesapp.networking.Contest;
+
+import android.util.Log;
+
+import androidx.lifecycle.MutableLiveData;
+
+import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public abstract class FetchContestListUseCase extends FetchItemsUseCase<CFContest,ContestModel> {
+    protected CFContest cfContest;
+    protected List<CFContestEntry> cfContestEntryList;
+    protected ArrayList<ContestModel> mList= new ArrayList<>();
+
+    protected MutableLiveData<ArrayList<ContestModel>> mLiveDataList= new MutableLiveData<>();
+
+
+    @Override
+    protected void fetchItems(boolean ignoreCacheAndForceRetrieve, final boolean notifyListeners) {
+        if(!ignoreCacheAndForceRetrieve  && notifyListeners && mList.size()>0){
+            notifySuccess();
+            return;
+        }
+
+        if(ignoreCacheAndForceRetrieve){
+            mList.clear();
+            mLiveDataList.setValue(mList);
+        }
+
+        Call<CFContest>  call= cfAPI.getContetList();
+
+        call.enqueue(new Callback<CFContest>() {
+            @Override
+            public void onResponse(Call<CFContest> call, Response<CFContest> response) {
+                cfContest = response.body();
+
+
+                if(!cfContest.getStatus().equals("OK")){
+                    notifyError(cfContest.getComment());
+                    return;
+                }
+
+
+                process(cfContest);
+
+
+                if(!notifyListeners)  return;
+                else notifySuccess();
+            }
+
+            @Override
+            public void onFailure(Call<CFContest> call, Throwable t) {
+                notifyError(NO_INTERNET);
+
+            }
+        });
+    }
+
+    public MutableLiveData<ArrayList<ContestModel>> getmLiveDataList(){
+        return mLiveDataList;
+    }
+
+
+    @Override
+    protected abstract void process(CFContest response);
+
+    @Override
+    public void notifyError(String errorMsg) {
+        //Log.i("dodo", cfContest.getStatus());
+        for(OnFetchItemsListener<ContestModel> listener: getListeners())
+            listener.onFetchItemListFetchFailed(errorMsg);
+    }
+
+    @Override
+    public void notifySuccess() {
+        mLiveDataList.setValue(mList);
+
+        Log.i("dodo", "notifySuccess: Yes");
+
+        for(OnFetchItemsListener<ContestModel> listener: getListeners())
+            listener.onItemListFetched(mList);
+    }
+}

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.codeforcesapp.screens.UserInfo.UserInfoActivity"
+    android:orientation="vertical"
+
+    android:background="#FFF">
+
+    <include layout="@layout/element_toolbar"/>
+    <include layout="@layout/change_handler"/>
+
+    <ImageView
+        android:id="@+id/proPic"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+
+        />
+    <ScrollView
+        android:id="@+id/layoutDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:visibility="invisible"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="50dp"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+
+                android:textStyle="bold"
+
+                android:textSize="15sp"
+                android:textColor="#0072ab"
+
+                />
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#f13c00"
+                android:text=""
+                android:textStyle="bold"
+                
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Country :"
+
+                android:textStyle="bold"
+                
+
+                android:textSize="15sp"
+                android:textColor="#0072ab"
+
+                />
+            <TextView
+                android:id="@+id/txtCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#f13c00"
+                android:text=""
+                android:textStyle="bold"
+                
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Rank :"
+
+                android:textStyle="bold"
+                
+
+                android:textSize="15sp"
+                android:textColor="#0072ab"
+
+                />
+            <TextView
+                android:id="@+id/txtRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#f13c00"
+                android:text=""
+                android:textStyle="bold"
+                
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Max Rank :"
+
+                android:textStyle="bold"
+                
+
+                android:textSize="15sp"
+                android:textColor="#0072ab"
+
+                />
+            <TextView
+                android:id="@+id/txtMaxRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#f13c00"
+                android:text=""
+                android:textStyle="bold"
+                
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Rating :"
+
+                android:textStyle="bold"
+                
+
+                android:textSize="15sp"
+                android:textColor="#0072ab"
+
+                />
+            <TextView
+                android:id="@+id/txtRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#f13c00"
+                android:text=""
+                android:textStyle="bold"
+                
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            >
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Max Rating :"
+
+                android:textStyle="bold"
+                
+
+                android:textSize="15sp"
+                android:textColor="#0072ab"
+
+                />
+            <TextView
+                android:id="@+id/txtMaxRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#f13c00"
+                android:text=""
+                android:textStyle="bold"
+                
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
