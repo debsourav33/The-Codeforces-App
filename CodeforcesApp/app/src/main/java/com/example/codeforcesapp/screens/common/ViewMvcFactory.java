@@ -26,8 +26,6 @@ public class ViewMvcFactory {
         return new ListItemDetailsViewMvc(mLayoutInflater,parent);
     }
 
-
-
     public ToolBarViewMvc getToolBarViewMvc(@Nullable ViewGroup parent){
         return new ToolBarViewMvc(mLayoutInflater,parent);
     }
