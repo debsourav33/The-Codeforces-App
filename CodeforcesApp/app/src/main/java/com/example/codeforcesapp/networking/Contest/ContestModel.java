@@ -95,7 +95,9 @@ public class ContestModel implements Parcelable, Comparable {
         return durationSec;
     }
 
-    public ContestStatus getContestStatus(){
+    public ContestStatus
+
+    getContestStatus(){
         if(getTimeTillStart()>0)  return ContestStatus.UPCOMING;
         if(getTimeTillFinish()>0)  return ContestStatus.RUNNING;
 

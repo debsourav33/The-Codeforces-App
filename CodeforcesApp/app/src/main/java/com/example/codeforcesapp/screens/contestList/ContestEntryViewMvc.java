@@ -1,5 +1,6 @@
 package com.example.codeforcesapp.screens.contestList;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,21 @@ import com.example.codeforcesapp.R;
 import com.example.codeforcesapp.networking.Contest.ContestModel;
 import com.example.codeforcesapp.screens.common.ObservableViewMvc;
 
+
 public class ContestEntryViewMvc extends ObservableViewMvc<IListItemViewMvc.Listener> implements IListItemViewMvc{
     TextView txtName, txtStartTime, txtIsInProgress, txtStartsIn;
     ContestModel mContestModel;
+
+    private Handler handler= new Handler();
+
+    private Runnable r= new Runnable() {
+        @Override
+        public void run() {
+            updateTimer();
+
+            handler.postDelayed(this,1000);
+        }
+    };
 
     public ContestEntryViewMvc(LayoutInflater inflater, ViewGroup parent) {
         setRootView(inflater.inflate(R.layout.item_view, parent, false));
@@ -27,15 +40,13 @@ public class ContestEntryViewMvc extends ObservableViewMvc<IListItemViewMvc.List
                     listener.onContestClicked(mContestModel);
             }
         });
-    }
 
+        handler.postDelayed(r,0);
+    }
 
     public void bindItem(ContestModel contestModel){
         mContestModel = contestModel;
         txtName.setText(mContestModel.getNames());
-        //txtStartTime.setText(contestModel.getStartTimeFormatted());
-
-        updateTimer();
     }
 
     public void updateStartTime(){

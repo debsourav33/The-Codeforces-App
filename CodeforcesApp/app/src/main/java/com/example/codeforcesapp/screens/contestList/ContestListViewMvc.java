@@ -5,6 +5,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codeforcesapp.R;
 import com.example.codeforcesapp.networking.Contest.ContestModel;
@@ -14,9 +16,10 @@ import com.example.codeforcesapp.screens.common.ViewMvcFactory;
 import java.util.ArrayList;
 
 
-public class ContestListViewMvc extends BaseNavigationView<IListViewMvc.Listener> implements IListViewMvc, ContestAdapter.OnContestClickListener {
+public class ContestListViewMvc extends BaseNavigationView<IListViewMvc.Listener> implements IListViewMvc, ContestRecyclerAdapter.OnContestClickListener {
     ListView mListView;
-    ContestAdapter adapter;
+    RecyclerView recyclerView;
+    ContestRecyclerAdapter contestAdapter;
     Toolbar toolbar;
     ViewMvcFactory viewMvcFactory;
 
@@ -28,27 +31,25 @@ public class ContestListViewMvc extends BaseNavigationView<IListViewMvc.Listener
 
         this.viewMvcFactory= viewMvcFactory;
 
-        mListView= findViewById(R.id.listView);
-        adapter= new ContestAdapter(getContext(),this);
-        mListView.setAdapter(adapter);
+        contestAdapter= new ContestRecyclerAdapter(this);
+
+        recyclerView= findViewById(R.id.recyclerView);
+        recyclerView.setAdapter(contestAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
 
         initToolbar();
     }
 
 
    void bindItems(ArrayList<ContestModel> list){
-        adapter.clear();
-        adapter.addAll(list);
-        adapter.notifyDataSetChanged();
+        contestAdapter.bindItems(list);
     }
 
     @Override
     public void onContestClicked(ContestModel contestModel) {
         for(Listener listener: getListeners()){
             listener.onContestClicked(contestModel);
-
         }
     }
-
-
 }
