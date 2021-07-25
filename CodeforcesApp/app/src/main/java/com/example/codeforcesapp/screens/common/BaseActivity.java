@@ -24,17 +24,4 @@ public class BaseActivity extends AppCompatActivity {
     protected ViewMvcFactory getViewMvcFactory(){
         return new ViewMvcFactory(LayoutInflater.from(this));
     }
-
-    protected void registerToObservable(IBaseObservable observable){
-        observable.registerListener(this);
-    }
-
-    protected void unregisterFromObservable(IBaseObservable observable){
-        observable.unregisterListener(this);
-    }
-
-
-
-
-
 }

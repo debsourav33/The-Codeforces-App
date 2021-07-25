@@ -11,6 +11,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -21,13 +25,20 @@ android {
 
 repositories {
     maven { url 'https://jitpack.io' }
+    jcenter()
 }
-
-def lifecycle_version = "2.2.0"
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.jetbrains:annotations-java5:15.0'
+
+    def work_version = "2.4.0"
+    def lifecycle_version = "2.2.0"
+    def room_version = "2.3.0"
+
+
+    // (Java only)
+    implementation "androidx.work:work-runtime:$work_version"
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
@@ -36,8 +47,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
-
-
 
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
@@ -48,9 +57,14 @@ dependencies {
 
     compile 'com.squareup.picasso:picasso:2.5.0'
 
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
-
+    testImplementation "org.robolectric:robolectric:3.3.2"
+    testImplementation "org.powermock:powermock-core:1.7.3"
+    testImplementation "org.powermock:powermock-module-junit4:1.7.3"
+    testImplementation "org.powermock:powermock-api-mockito2:1.7.3"
 }

@@ -12,7 +12,7 @@ public abstract class FetchItemsUseCase<ResponseType, EntryModel> extends BaseOb
         void onFetchItemListFetchFailed(String error);
     }
 
-    protected CodeforcesAPI cfAPI= RetrofitInstance.getCodeforcesAPIInstance();
+    protected CodeforcesAPI cfApi = RetrofitInstance.getCodeforcesAPIInstance();
 
     protected abstract void fetchItems(boolean ignoreCacheAndForceRetrieve, boolean notifyListeners);
 

@@ -1,4 +1,4 @@
-package com.example.codeforcesapp.networking.Contest;
+package com.example.codeforcesapp.data.contest;
 
 
 import android.os.Parcel;
@@ -103,8 +103,6 @@ public class ContestModel implements Parcelable, Comparable {
 
         return ContestStatus.FINISHED;
     }
-
-
 
     @Override
     public int describeContents() {

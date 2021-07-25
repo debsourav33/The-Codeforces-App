@@ -1,4 +1,4 @@
-package com.example.codeforcesapp.networking.UserInfo;
+package com.example.codeforcesapp.data.userinfo;
 
 public class UserInfoModel {
     private String firstName;
@@ -58,7 +58,7 @@ public class UserInfoModel {
     public static class Builder{
         private String firstName, lastName, rank, maxRank, rating, maxRating, country, proPicUrl;
 
-        Builder(){
+        public Builder(){
 
         }
 

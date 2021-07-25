@@ -5,7 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.codeforcesapp.networking.UserSubmission.FetchUserSubmissionListUseCase;
-import com.example.codeforcesapp.networking.UserSubmission.UserSubmissionModel;
+import com.example.codeforcesapp.data.usersubmission.UserSubmissionModel;
 import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationActivity;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;

@@ -1,5 +1,9 @@
 package com.example.codeforcesapp.networking.Contest;
 
+import com.example.codeforcesapp.data.contest.CFContest;
+import com.example.codeforcesapp.data.contest.CFContestEntry;
+import com.example.codeforcesapp.data.contest.ContestModel;
+
 import java.util.Collections;
 
 public class FetchPastContestListUseCase extends FetchContestListUseCase {

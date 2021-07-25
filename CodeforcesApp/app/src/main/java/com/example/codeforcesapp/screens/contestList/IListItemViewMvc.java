@@ -1,6 +1,6 @@
 package com.example.codeforcesapp.screens.contestList;
 
-import com.example.codeforcesapp.networking.Contest.ContestModel;
+import com.example.codeforcesapp.data.contest.ContestModel;
 
 public interface IListItemViewMvc {
     interface Listener{

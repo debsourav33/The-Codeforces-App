@@ -1,16 +1,14 @@
-package com.example.codeforcesapp.networking.UserSubmission;
+package com.example.codeforcesapp.data.usersubmission;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
-public class CFUserSubmissionEntry {
-    @SerializedName("id")
-    @Expose
+public class UserSubmissionModel {
     String id;
-
-    @SerializedName("verdict")
-    @Expose
     String verdict;
+
+    public UserSubmissionModel(String id, String verdict) {
+        this.id = id;
+        this.verdict = verdict;
+    }
 
     public String getId() {
         return id;

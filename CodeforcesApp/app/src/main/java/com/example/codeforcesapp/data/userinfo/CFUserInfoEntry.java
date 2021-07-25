@@ -1,4 +1,4 @@
-package com.example.codeforcesapp.networking.UserInfo;
+package com.example.codeforcesapp.data.userinfo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

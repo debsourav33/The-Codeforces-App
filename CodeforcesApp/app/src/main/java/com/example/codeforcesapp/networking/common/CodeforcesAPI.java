@@ -1,12 +1,11 @@
 package com.example.codeforcesapp.networking.common;
 
-import com.example.codeforcesapp.networking.Contest.CFContest;
-import com.example.codeforcesapp.networking.UserInfo.CFUserInfo;
-import com.example.codeforcesapp.networking.UserSubmission.CFUserSubmission;
+import com.example.codeforcesapp.data.contest.CFContest;
+import com.example.codeforcesapp.data.userinfo.CFUserInfo;
+import com.example.codeforcesapp.data.usersubmission.CFUserSubmission;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface CodeforcesAPI {

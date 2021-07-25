@@ -1,8 +1,8 @@
 package com.example.codeforcesapp.networking.UserSubmission;
 
-import android.util.Log;
-
-import com.example.codeforcesapp.networking.Contest.ContestModel;
+import com.example.codeforcesapp.data.usersubmission.CFUserSubmission;
+import com.example.codeforcesapp.data.usersubmission.CFUserSubmissionEntry;
+import com.example.codeforcesapp.data.usersubmission.UserSubmissionModel;
 import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<CFUserSubmission,UserSubmissionModel> {
+public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<CFUserSubmission, UserSubmissionModel> {
     protected CFUserSubmission cfUserSubmission;
     protected List<CFUserSubmissionEntry> entryList;
     protected ArrayList<UserSubmissionModel> mList= new ArrayList<>();
@@ -46,7 +46,7 @@ public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<CFUserSubm
 
         if(ignoreCacheAndForceRetrieve)  mList.clear();
 
-        Call<CFUserSubmission> call= cfAPI.getUserSubmission(userHandler);
+        Call<CFUserSubmission> call= cfApi.getUserSubmission(userHandler);
 
         call.enqueue(new Callback<CFUserSubmission>() {
             @Override

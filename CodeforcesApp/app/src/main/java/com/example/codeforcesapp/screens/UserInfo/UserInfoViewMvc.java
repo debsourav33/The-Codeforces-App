@@ -2,7 +2,6 @@ package com.example.codeforcesapp.screens.UserInfo;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 import com.example.codeforcesapp.R;
 import com.example.codeforcesapp.common.ActivityManagerHost;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;
-import com.example.codeforcesapp.networking.UserInfo.UserInfoModel;
+import com.example.codeforcesapp.data.userinfo.UserInfoModel;
 import com.example.codeforcesapp.screens.navigationviews.ColorUtils;
 import com.squareup.picasso.Picasso;
 

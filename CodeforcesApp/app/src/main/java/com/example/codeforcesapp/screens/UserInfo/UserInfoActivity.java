@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.codeforcesapp.networking.UserInfo.FetchUserInfoUseCase;
-import com.example.codeforcesapp.networking.UserInfo.UserInfoModel;
+import com.example.codeforcesapp.data.userinfo.UserInfoModel;
 import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationActivity;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;

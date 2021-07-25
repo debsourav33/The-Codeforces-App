@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codeforcesapp.R;
-import com.example.codeforcesapp.networking.Contest.ContestModel;
+import com.example.codeforcesapp.data.contest.ContestModel;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;
 import com.example.codeforcesapp.screens.common.ViewMvcFactory;
 

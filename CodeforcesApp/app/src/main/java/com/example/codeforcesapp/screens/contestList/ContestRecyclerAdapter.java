@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.codeforcesapp.networking.Contest.ContestModel;
+import com.example.codeforcesapp.data.contest.ContestModel;
 
 import java.util.ArrayList;
 

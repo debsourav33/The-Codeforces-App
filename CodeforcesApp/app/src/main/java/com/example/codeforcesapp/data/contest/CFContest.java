@@ -1,21 +1,18 @@
-package com.example.codeforcesapp.networking.UserSubmission;
+package com.example.codeforcesapp.data.contest;
 
-import com.example.codeforcesapp.networking.Contest.CFContestEntry;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import retrofit2.http.GET;
-
-public class CFUserSubmission {
+public class CFContest {
     @SerializedName("status")
     @Expose
     String status;
 
     @SerializedName("result")
     @Expose
-    List<CFUserSubmissionEntry> resultSubmissionList;
+    List<CFContestEntry> resultContestList;
 
     @SerializedName("comment")
     @Expose
@@ -37,11 +34,11 @@ public class CFUserSubmission {
         this.status = status;
     }
 
-    public List<CFUserSubmissionEntry> getResultSubmissionList() {
-        return resultSubmissionList;
+    public List<CFContestEntry> getResultContestList() {
+        return resultContestList;
     }
 
-    public void setResultSubmissionList(List<CFUserSubmissionEntry> resultSubmissionList) {
-        this.resultSubmissionList = resultSubmissionList;
+    public void setResultContestList(List<CFContestEntry> resultContestList) {
+        this.resultContestList = resultContestList;
     }
 }

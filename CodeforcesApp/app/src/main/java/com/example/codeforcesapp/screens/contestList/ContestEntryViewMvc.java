@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.codeforcesapp.R;
-import com.example.codeforcesapp.networking.Contest.ContestModel;
+import com.example.codeforcesapp.data.contest.ContestModel;
 import com.example.codeforcesapp.screens.common.ObservableViewMvc;
 
 

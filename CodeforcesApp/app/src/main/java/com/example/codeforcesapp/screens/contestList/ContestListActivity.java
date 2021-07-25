@@ -1,12 +1,11 @@
 package com.example.codeforcesapp.screens.contestList;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import androidx.lifecycle.Observer;
-
-import com.example.codeforcesapp.networking.Contest.ContestModel;
+import com.example.codeforcesapp.data.contest.ContestModel;
+import com.example.codeforcesapp.data.database.ContestCacheService;
 import com.example.codeforcesapp.networking.Contest.FetchUpcomingContestListUseCase;
 import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationActivity;
@@ -27,24 +26,10 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
         mViewMvc = getViewMvcFactory().getListViewMvc(null);
 
         fetchUpcomingContestListUseCase=  FetchUpcomingContestListUseCase.getInstance();
-
-        //observeContestModels();
+        Intent intent = new Intent(this, ContestCacheService.class);
+        startService(intent);
 
         setContentView(mViewMvc.getRootView());
-    }
-
-    private void observeContestModels() {
-        fetchUpcomingContestListUseCase.fetchItems(false);
-
-        final Observer<ArrayList<ContestModel>> contestModelObserver= new Observer<ArrayList<ContestModel>>() {
-            @Override
-            public void onChanged(ArrayList<ContestModel> contestModels) {
-                Log.i("dodos", "onChanged: ");
-                passItems(contestModels);
-            }
-        };
-
-        fetchUpcomingContestListUseCase.getmLiveDataList().observe(this,contestModelObserver);
     }
 
     @Override
@@ -52,16 +37,15 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
         return mViewMvc;
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
 
         //mViewMvc.registerListener(this);
 
-        registerToObservable(mViewMvc);
+        mViewMvc.registerListener(this);
 
-        registerToObservable(fetchUpcomingContestListUseCase);
+        fetchUpcomingContestListUseCase.registerListener(this);
         fetchUpcomingContestListUseCase.fetchItems(false);
     }
 
@@ -72,11 +56,9 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
         //mViewMvc.unregisterListener(this);
         //fetchUpcomingContestListUseCase.unregisterListener(this);
 
-        unregisterFromObservable(mViewMvc);
-        unregisterFromObservable(fetchUpcomingContestListUseCase);
+        mViewMvc.unregisterListener(this);
+        fetchUpcomingContestListUseCase.unregisterListener(this);
     }
-
-
 
     private void passItems(ArrayList<ContestModel> contestModelList) {
         mViewMvc.bindItems(contestModelList);

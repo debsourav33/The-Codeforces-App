@@ -1,9 +1,10 @@
 package com.example.codeforcesapp.networking.UserInfo;
 
 import android.util.Log;
-import android.widget.ScrollView;
 
-import com.example.codeforcesapp.networking.Contest.ContestModel;
+import com.example.codeforcesapp.data.userinfo.CFUserInfo;
+import com.example.codeforcesapp.data.userinfo.CFUserInfoEntry;
+import com.example.codeforcesapp.data.userinfo.UserInfoModel;
 import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FetchUserInfoUseCase extends FetchItemsUseCase<CFUserInfo,UserInfoModel> {
+public class FetchUserInfoUseCase extends FetchItemsUseCase<CFUserInfo, UserInfoModel> {
     private CFUserInfo cfUserInfo;
     private List<CFUserInfoEntry> cfUserInfoEntryList;
     private ArrayList<UserInfoModel> mList= new ArrayList<>();
@@ -46,7 +47,7 @@ public class FetchUserInfoUseCase extends FetchItemsUseCase<CFUserInfo,UserInfoM
 
         if(ignoreCacheAndForceRetrieve)  mList.clear();
 
-        Call<CFUserInfo> call= cfAPI.getUserInfo(userHandler);
+        Call<CFUserInfo> call= cfApi.getUserInfo(userHandler);
 
         call.enqueue(new Callback<CFUserInfo>() {
             @Override

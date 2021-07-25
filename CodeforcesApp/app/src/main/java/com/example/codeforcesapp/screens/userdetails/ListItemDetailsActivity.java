@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.codeforcesapp.networking.Contest.ContestModel;
+import com.example.codeforcesapp.data.contest.ContestModel;
 import com.example.codeforcesapp.screens.contestList.ContestListActivity;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationActivity;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;

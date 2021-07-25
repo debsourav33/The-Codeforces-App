@@ -1,6 +1,9 @@
 package com.example.codeforcesapp.networking.Contest;
 
-import android.util.Log;
+import com.example.codeforcesapp.data.contest.CFContest;
+import com.example.codeforcesapp.data.contest.CFContestEntry;
+import com.example.codeforcesapp.data.contest.ContestModel;
+import com.example.codeforcesapp.data.contest.ContestStatus;
 
 import java.util.Collections;
 
@@ -33,8 +36,5 @@ public class FetchUpcomingContestListUseCase extends FetchContestListUseCase {
         }
 
         Collections.sort(mList);
-
-        mLiveDataList.setValue(mList);
-
     }
 }
