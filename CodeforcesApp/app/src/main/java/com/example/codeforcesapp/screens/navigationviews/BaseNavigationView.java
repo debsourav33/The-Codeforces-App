@@ -47,7 +47,7 @@ public class BaseNavigationView<ListenerType> extends ObservableViewMvc<Listener
         mFrame= findViewById(R.id.frame_layout);
         mNavView = findViewById(R.id.nav_view);
         mDrawer= findViewById(R.id.drawer_layout);
-        mDrawer.setDrawerListener(this);
+        mDrawer.addDrawerListener(this);
 
 
         //toolbarView= inflater.inflate(R.layout.element_toolbar,parent,false);
@@ -71,6 +71,9 @@ public class BaseNavigationView<ListenerType> extends ObservableViewMvc<Listener
                         break;
                     case R.id.drawer_menu_submissions:
                         itemClicked= DrawerItem.USER_SUBMISSIONS;
+                        break;
+                    case R.id.drawer_menu_new:
+                        itemClicked = DrawerItem.NEW_FEATURE;
                         break;
                 }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.new_feature.SomeActivity"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/element_toolbar"/>
+
+    <TextView
+        android:id="@+id/txtHey"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:text="Hey I'm the New Feature"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+
+</LinearLayout>

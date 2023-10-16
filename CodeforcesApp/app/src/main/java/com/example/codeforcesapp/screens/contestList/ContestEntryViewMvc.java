@@ -41,7 +41,7 @@ public class ContestEntryViewMvc extends ObservableViewMvc<IListItemViewMvc.List
             }
         });
 
-        handler.postDelayed(r,0);
+        //handler.postDelayed(r,0);
     }
 
     public void bindItem(ContestModel contestModel){

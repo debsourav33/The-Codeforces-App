@@ -23,11 +23,11 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mViewMvc = getViewMvcFactory().getListViewMvc(null);
+        mViewMvc = getViewMvcFactory().getContestListViewMvc(null);
 
         fetchUpcomingContestListUseCase=  FetchUpcomingContestListUseCase.getInstance();
-        Intent intent = new Intent(this, ContestCacheService.class);
-        startService(intent);
+        //Intent intent = new Intent(this, ContestCacheService.class);
+        //startService(intent);
 
         setContentView(mViewMvc.getRootView());
     }

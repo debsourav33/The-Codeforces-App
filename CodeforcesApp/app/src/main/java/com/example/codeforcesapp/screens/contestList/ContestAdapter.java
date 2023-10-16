@@ -29,7 +29,7 @@ public class ContestAdapter extends ArrayAdapter<ContestModel> implements IListI
         super(context,0);
         mOnContestClickListener = onContestClickListener;
 
-        handler.postDelayed(r,0);
+        //handler.postDelayed(r,0);
     }
 
     private Handler handler= new Handler();

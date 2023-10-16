@@ -18,6 +18,12 @@
             android:icon="@mipmap/icon_user"
             android:title="Submissions"
             />
+
+        <item
+            android:id="@+id/drawer_menu_new"
+            android:icon="@mipmap/icon_user"
+            android:title="I'm New"
+            />
     </group>
 
 </menu>

@@ -11,9 +11,17 @@ import com.example.codeforcesapp.data.contest.ContestModel;
 
 import java.util.ArrayList;
 
-public class ContestRecyclerAdapter extends RecyclerView.Adapter<ContestRecyclerAdapter.ContestViewHolder> implements IListItemViewMvc.Listener {
+public class ContestRecyclerAdapter extends RecyclerView.Adapter<ContestRecyclerAdapter.ViewHolder> implements IListItemViewMvc.Listener {
     public interface OnContestClickListener{
         void onContestClicked(ContestModel contestModel);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder{
+        ContestEntryViewMvc contestEntryViewMvc;
+        public ViewHolder(@NonNull View itemView, ContestEntryViewMvc contestEntryViewMvc) {
+            super(itemView);
+            this.contestEntryViewMvc= contestEntryViewMvc;
+        }
     }
 
     private ArrayList<ContestModel> contestModels= new ArrayList<>();
@@ -25,15 +33,15 @@ public class ContestRecyclerAdapter extends RecyclerView.Adapter<ContestRecycler
 
     @NonNull
     @Override
-    public ContestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ContestEntryViewMvc contestEntryViewMvc= new ContestEntryViewMvc(LayoutInflater.from(parent.getContext()),parent);
         contestEntryViewMvc.registerListener(this);
 
-        return new ContestViewHolder(contestEntryViewMvc.getRootView(), contestEntryViewMvc);
+        return new ViewHolder(contestEntryViewMvc.getRootView(), contestEntryViewMvc);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContestViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ContestEntryViewMvc contestEntryViewMvc= holder.contestEntryViewMvc;
 
         ContestModel model= contestModels.get(position);
@@ -56,13 +64,5 @@ public class ContestRecyclerAdapter extends RecyclerView.Adapter<ContestRecycler
         onContestClickListener.onContestClicked(contestModel);
     }
 
-    static class ContestViewHolder extends RecyclerView.ViewHolder{
-        ContestEntryViewMvc contestEntryViewMvc;
-
-        public ContestViewHolder(@NonNull View itemView, ContestEntryViewMvc contestEntryViewMvc) {
-            super(itemView);
-            this.contestEntryViewMvc= contestEntryViewMvc;
-        }
-    }
 
 }
