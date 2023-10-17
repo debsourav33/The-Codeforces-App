@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".screens.new_feature.SomeActivity"
+            android:name=".screens.oldcontests.contestdetail.ContestDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.oldcontests.OldContestListActivity"
             android:exported="false" />
 
         <service android:name=".data.database.ContestCacheService" />
@@ -30,7 +33,7 @@
         <activity android:name=".screens.UserInfo.UserInfoActivity" />
         <activity android:name=".screens.common.BaseActivity" />
         <activity android:name=".screens.userdetails.ListItemDetailsActivity" />
-        <activity android:name=".screens.usersubmission.UserSubmissionActivity"></activity>
+        <activity android:name=".screens.usersubmission.UserSubmissionActivity" />
     </application>
 
 </manifest>

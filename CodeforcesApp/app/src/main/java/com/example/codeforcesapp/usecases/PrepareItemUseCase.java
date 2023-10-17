@@ -10,7 +10,7 @@ public class PrepareItemUseCase extends BaseObservable<PrepareItemUseCase.Listen
     }
 
     public void prepareItemAndNotify(ContestModel contestModel){
-        names= contestModel.getNames();
+        names= contestModel.getName();
         notifySuccess();
     }
 

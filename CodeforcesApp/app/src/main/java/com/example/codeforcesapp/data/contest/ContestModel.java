@@ -8,17 +8,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ContestModel implements Parcelable, Comparable {
-    private String names, startTime, id, durationSec, startTimeFormatted;
+    private String name, startTime, id, durationSec, startTimeFormatted;
 
     public ContestModel(String name, String startTime) {
-        this.names = name;
+        this.name = name;
         this.startTime = startTime;
 
         setStartTimeFormatted(unixToDateTime(Long.parseLong(startTime)));
     }
 
     public ContestModel(CFContestEntry contestEntry){
-        this.names= contestEntry.getName();
+        this.name = contestEntry.getName();
         this.startTime= contestEntry.getStartTime();
         this.durationSec= contestEntry.getDurationSec();
 
@@ -26,7 +26,7 @@ public class ContestModel implements Parcelable, Comparable {
     }
 
     public ContestModel(Parcel parcel) {
-        this.names = parcel.readString();
+        this.name = parcel.readString();
         this.startTime = parcel.readString();
         this.startTimeFormatted= parcel.readString();
     }
@@ -43,8 +43,8 @@ public class ContestModel implements Parcelable, Comparable {
         }
     };
 
-    public String getNames() {
-        return names;
+    public String getName() {
+        return name;
     }
 
     public String getStartTime() {
@@ -111,7 +111,7 @@ public class ContestModel implements Parcelable, Comparable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(names);
+        dest.writeString(name);
         dest.writeString(startTime);
         dest.writeString(startTimeFormatted);
         //dest.writeString(id);

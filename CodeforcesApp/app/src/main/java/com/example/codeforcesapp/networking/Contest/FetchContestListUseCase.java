@@ -45,7 +45,8 @@ public abstract class FetchContestListUseCase extends FetchItemsUseCase<CFContes
 
                 process(cfContest);
 
-                if(!notifyListeners)  return;
+                if(!notifyListeners) {
+                }
                 else notifySuccess();
             }
 

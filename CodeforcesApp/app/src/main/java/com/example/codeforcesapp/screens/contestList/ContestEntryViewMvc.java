@@ -46,7 +46,7 @@ public class ContestEntryViewMvc extends ObservableViewMvc<IListItemViewMvc.List
 
     public void bindItem(ContestModel contestModel){
         mContestModel = contestModel;
-        txtName.setText(mContestModel.getNames());
+        txtName.setText(mContestModel.getName());
     }
 
     public void updateStartTime(){

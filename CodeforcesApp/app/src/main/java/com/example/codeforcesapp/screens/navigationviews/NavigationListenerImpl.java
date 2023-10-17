@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.example.codeforcesapp.common.ActivityManagerHost;
 import com.example.codeforcesapp.screens.contestList.ContestListActivity;
 import com.example.codeforcesapp.screens.UserInfo.UserInfoActivity;
-import com.example.codeforcesapp.screens.new_feature.SomeActivity;
+import com.example.codeforcesapp.screens.oldcontests.OldContestListActivity;
 import com.example.codeforcesapp.screens.usersubmission.UserSubmissionActivity;
 
 public class NavigationListenerImpl implements NavigationListener {
@@ -59,9 +59,9 @@ public class NavigationListenerImpl implements NavigationListener {
     }
 
     private void switchToSomeActivity(){
-        if(manager.getCurrActivity() instanceof SomeActivity)  return;
+        if(manager.getCurrActivity() instanceof OldContestListActivity)  return;
 
-        manager.getCurrActivity().startActivity(new Intent(manager.getCurrActivity(), SomeActivity.class));
+        manager.getCurrActivity().startActivity(new Intent(manager.getCurrActivity(), OldContestListActivity.class));
     }
 
 }

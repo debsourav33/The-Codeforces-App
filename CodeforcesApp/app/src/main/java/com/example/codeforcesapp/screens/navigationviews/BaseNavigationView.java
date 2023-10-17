@@ -1,16 +1,12 @@
 package com.example.codeforcesapp.screens.navigationviews;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.ActivityManager;
-import android.media.Image;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
@@ -72,7 +68,7 @@ public class BaseNavigationView<ListenerType> extends ObservableViewMvc<Listener
                     case R.id.drawer_menu_submissions:
                         itemClicked= DrawerItem.USER_SUBMISSIONS;
                         break;
-                    case R.id.drawer_menu_new:
+                    case R.id.drawer_menu_old_contests:
                         itemClicked = DrawerItem.NEW_FEATURE;
                         break;
                 }

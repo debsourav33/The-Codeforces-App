@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
-import com.example.codeforcesapp.screens.new_feature.SomeView;
+import com.example.codeforcesapp.screens.oldcontests.OldContestListViewMvc;
 import com.example.codeforcesapp.screens.userdetails.ListItemDetailsViewMvc;
 import com.example.codeforcesapp.screens.UserInfo.UserInfoViewMvc;
 import com.example.codeforcesapp.screens.contestList.ContestListViewMvc;
@@ -43,7 +43,7 @@ public class ViewMvcFactory {
         return new UserSubmissionViewMvc(mLayoutInflater,parent);
     }
 
-    public SomeView getNewFeatureViewMVC(ViewGroup parent){
-        return new SomeView(mLayoutInflater,parent);
+    public OldContestListViewMvc getNewFeatureViewMVC(ViewGroup parent){
+        return new OldContestListViewMvc(mLayoutInflater,parent);
     }
 }

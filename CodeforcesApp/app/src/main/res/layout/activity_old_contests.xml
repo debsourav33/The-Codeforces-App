@@ -4,20 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.new_feature.SomeActivity"
+    tools:context=".screens.oldcontests.OldContestListActivity"
     android:orientation="vertical"
     >
 
     <include layout="@layout/element_toolbar"/>
 
-    <TextView
-        android:id="@+id/txtHey"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/oldContestRecylerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:text="Hey I'm the New Feature"
-        android:gravity="center"
-        android:textStyle="bold"
+        tools:listitem="@layout/item_old_contest"
         />
 
 </LinearLayout>

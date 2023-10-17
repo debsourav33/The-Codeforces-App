@@ -4,8 +4,14 @@
         <item
         android:id="@+id/drawer_menu_list"
         android:icon="@mipmap/icon_list"
-        android:title="Contest list"
+        android:title="Upcoming Contests"
         />
+
+        <item
+            android:id="@+id/drawer_menu_old_contests"
+            android:icon="@mipmap/icon_list"
+            android:title="Past Contests"
+            />
 
         <item
             android:id="@+id/drawer_menu_userinfo"
@@ -19,11 +25,7 @@
             android:title="Submissions"
             />
 
-        <item
-            android:id="@+id/drawer_menu_new"
-            android:icon="@mipmap/icon_user"
-            android:title="I'm New"
-            />
+
     </group>
 
 </menu>

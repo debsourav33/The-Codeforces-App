@@ -1,5 +1,7 @@
 package com.example.codeforcesapp.networking.Contest;
 
+import android.util.Log;
+
 import com.example.codeforcesapp.data.contest.CFContest;
 import com.example.codeforcesapp.data.contest.CFContestEntry;
 import com.example.codeforcesapp.data.contest.ContestModel;
@@ -28,7 +30,8 @@ public class FetchPastContestListUseCase extends FetchContestListUseCase {
             mList.add(cm);
         }
 
-        Collections.sort(mList);
+        Log.d("fetchPastContest", "fetched data: " + mList);
+        //Collections.sort(mList);
 
     }
 }
