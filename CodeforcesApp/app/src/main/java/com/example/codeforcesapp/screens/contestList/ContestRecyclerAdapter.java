@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.codeforcesapp.data.contest.ContestModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContestRecyclerAdapter extends RecyclerView.Adapter<ContestRecyclerAdapter.ViewHolder> implements IListItemViewMvc.Listener {
     public interface OnContestClickListener{
@@ -24,7 +25,7 @@ public class ContestRecyclerAdapter extends RecyclerView.Adapter<ContestRecycler
         }
     }
 
-    private ArrayList<ContestModel> contestModels= new ArrayList<>();
+    private List<ContestModel> contestModels= new ArrayList<>();
     private OnContestClickListener onContestClickListener;
 
     public ContestRecyclerAdapter(OnContestClickListener onContestClickListener){
@@ -54,7 +55,7 @@ public class ContestRecyclerAdapter extends RecyclerView.Adapter<ContestRecycler
     }
 
 
-    public void bindItems(ArrayList<ContestModel> list) {
+    public void bindItems(List<ContestModel> list) {
         contestModels= list;
         notifyDataSetChanged();
     }

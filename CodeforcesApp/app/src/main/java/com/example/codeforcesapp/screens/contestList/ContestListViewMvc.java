@@ -14,6 +14,7 @@ import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;
 import com.example.codeforcesapp.screens.common.ViewMvcFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ContestListViewMvc extends BaseNavigationView<IListViewMvc.Listener> implements IListViewMvc, ContestRecyclerAdapter.OnContestClickListener {
@@ -42,7 +43,7 @@ public class ContestListViewMvc extends BaseNavigationView<IListViewMvc.Listener
     }
 
 
-   void bindItems(ArrayList<ContestModel> list){
+   void bindItems(List<ContestModel> list){
         contestAdapter.bindItems(list);
     }
 

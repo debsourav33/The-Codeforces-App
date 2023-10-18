@@ -1,23 +1,23 @@
 package com.example.codeforcesapp.screens.contestList;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
+import androidx.lifecycle.Observer;
+
+import com.example.codeforcesapp.data.contest.ContestEntity;
 import com.example.codeforcesapp.data.contest.ContestModel;
-import com.example.codeforcesapp.data.database.ContestCacheService;
-import com.example.codeforcesapp.networking.Contest.FetchUpcomingContestListUseCase;
-import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
+import com.example.codeforcesapp.data.database.ContestRepository;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationActivity;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ContestListActivity extends BaseNavigationActivity implements ContestListViewMvc.Listener {
     ContestListViewMvc mViewMvc;
 
-    //FetchContestListUseCase fetchContestListUseCase;
-    FetchUpcomingContestListUseCase fetchUpcomingContestListUseCase;
+
+    ContestRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,18 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
 
         mViewMvc = getViewMvcFactory().getContestListViewMvc(null);
 
-        fetchUpcomingContestListUseCase=  FetchUpcomingContestListUseCase.getInstance(this);
+        repository = new ContestRepository(getApplicationContext());
+        repository.getNewContests().observe(this, new Observer<List<ContestEntity>>() {
+            @Override
+            public void onChanged(List<ContestEntity> contestEntities) {
+                List<ContestModel> models = contestEntities.stream()
+                        .map((contestEntity -> new ContestModel(contestEntity)))
+                        .collect(Collectors.toList());
+                passItems(models);
+
+            }
+        });
+
         //Intent intent = new Intent(this, ContestCacheService.class);
         //startService(intent);
 
@@ -58,7 +69,7 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
         //fetchUpcomingContestListUseCase.unregisterListener(this);
     }
 
-    private void passItems(ArrayList<ContestModel> contestModelList) {
+    private void passItems(List<ContestModel> contestModelList) {
         mViewMvc.bindItems(contestModelList);
     }
 

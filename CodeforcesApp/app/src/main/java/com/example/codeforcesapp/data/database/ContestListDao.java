@@ -27,4 +27,10 @@ public interface ContestListDao {
 
     @Query("SELECT * from ContestEntity WHERE phase = 'FINISHED'")
     LiveData<List<ContestEntity>> getPastContests();
+
+    @Query("SELECT * " +
+            "from ContestEntity " +
+            "WHERE phase != 'FINISHED'" +
+            "ORDER BY Start_Time") //running or upcoming
+    LiveData<List<ContestEntity>> getUpcomingContests();
 }

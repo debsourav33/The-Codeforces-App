@@ -50,6 +50,10 @@ public class ContestRepository {
         return pastContests;
     }
 
+    public LiveData<List<ContestEntity>> getNewContests(){
+        LiveData<List<ContestEntity>> newContests = dao.getUpcomingContests();
+        return newContests;
+    }
 
 
     public void insert(final ContestEntity contestEntry){

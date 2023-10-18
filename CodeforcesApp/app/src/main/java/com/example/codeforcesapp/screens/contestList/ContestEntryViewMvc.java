@@ -15,14 +15,14 @@ public class ContestEntryViewMvc extends ObservableViewMvc<IListItemViewMvc.List
     TextView txtName, txtStartTime, txtIsInProgress, txtStartsIn;
     ContestModel mContestModel;
 
-    private Handler handler= new Handler();
+    private Handler timerUpdatehandler;
 
-    private Runnable r= new Runnable() {
+    private Runnable updateTimerTask = new Runnable() {
         @Override
         public void run() {
             updateTimer();
 
-            handler.postDelayed(this,1000);
+            timerUpdatehandler.postDelayed(this,1000);
         }
     };
 
@@ -41,12 +41,16 @@ public class ContestEntryViewMvc extends ObservableViewMvc<IListItemViewMvc.List
             }
         });
 
-        //handler.postDelayed(r,0);
+        timerUpdatehandler = new Handler(getContext().getMainLooper());
+
+        //Fixed: don't start the timer before contestModel is binded by bindItem()
+        //timerUpdatehandler.postDelayed(updateTimerTask,0);
     }
 
     public void bindItem(ContestModel contestModel){
         mContestModel = contestModel;
         txtName.setText(mContestModel.getName());
+        timerUpdatehandler.postDelayed(updateTimerTask,0); //update the timer
     }
 
     public void updateStartTime(){
