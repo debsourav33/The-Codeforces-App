@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "Contest_Table")
-public class CFContestEntry {
+@Entity(tableName = "ContestEntity")
+public class ContestEntity {
     @SerializedName("id")
     @PrimaryKey()
     @NonNull
@@ -29,6 +29,9 @@ public class CFContestEntry {
     @ColumnInfo(name = "Duration_In_Seconds")
     @Expose
     private String durationSec;
+
+    @Expose
+    private String phase;
 
     public String getId() {
         return id;
@@ -60,5 +63,13 @@ public class CFContestEntry {
 
     public void setStartTime(String startTime) {
         this.startTime = startTime;
+    }
+
+    public String getPhase() {
+        return phase;
+    }
+
+    public void setPhase(String phase) {
+        this.phase = phase;
     }
 }

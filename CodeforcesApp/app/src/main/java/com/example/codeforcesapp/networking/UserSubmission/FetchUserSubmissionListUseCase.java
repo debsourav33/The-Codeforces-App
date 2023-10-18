@@ -1,7 +1,9 @@
 package com.example.codeforcesapp.networking.UserSubmission;
 
-import com.example.codeforcesapp.data.usersubmission.CFUserSubmission;
-import com.example.codeforcesapp.data.usersubmission.CFUserSubmissionEntry;
+import android.content.Context;
+
+import com.example.codeforcesapp.data.usersubmission.UserSubmissionApiResponse;
+import com.example.codeforcesapp.data.usersubmission.UserSubmissionEntry;
 import com.example.codeforcesapp.data.usersubmission.UserSubmissionModel;
 import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
 
@@ -12,9 +14,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<CFUserSubmission, UserSubmissionModel> {
-    protected CFUserSubmission cfUserSubmission;
-    protected List<CFUserSubmissionEntry> entryList;
+public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<UserSubmissionApiResponse, UserSubmissionModel> {
+    protected UserSubmissionApiResponse cfUserSubmission;
+    protected List<UserSubmissionEntry> entryList;
     protected ArrayList<UserSubmissionModel> mList= new ArrayList<>();
 
 
@@ -22,14 +24,14 @@ public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<CFUserSubm
 
     public static FetchUserSubmissionListUseCase fetchUserSubmissionListUseCase;
 
-    private FetchUserSubmissionListUseCase(){
-
+    private FetchUserSubmissionListUseCase(Context ctx){
+        super(ctx);
     }
 
 
-    public static FetchUserSubmissionListUseCase getInstance() {
+    public static FetchUserSubmissionListUseCase getInstance(Context ctx) {
         if(fetchUserSubmissionListUseCase ==null) {
-            fetchUserSubmissionListUseCase = new FetchUserSubmissionListUseCase();
+            fetchUserSubmissionListUseCase = new FetchUserSubmissionListUseCase(ctx);
         }
 
         return fetchUserSubmissionListUseCase;
@@ -46,11 +48,11 @@ public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<CFUserSubm
 
         if(ignoreCacheAndForceRetrieve)  mList.clear();
 
-        Call<CFUserSubmission> call= cfApi.getUserSubmission(userHandler);
+        Call<UserSubmissionApiResponse> call= cfApi.getUserSubmission(userHandler);
 
-        call.enqueue(new Callback<CFUserSubmission>() {
+        call.enqueue(new Callback<UserSubmissionApiResponse>() {
             @Override
-            public void onResponse(Call<CFUserSubmission> call, Response<CFUserSubmission> response) {
+            public void onResponse(Call<UserSubmissionApiResponse> call, Response<UserSubmissionApiResponse> response) {
                 cfUserSubmission = response.body();
 
                 if(cfUserSubmission==null){
@@ -71,7 +73,7 @@ public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<CFUserSubm
             }
 
             @Override
-            public void onFailure(Call<CFUserSubmission> call, Throwable t) {
+            public void onFailure(Call<UserSubmissionApiResponse> call, Throwable t) {
                 notifyError(NO_INTERNET);
 
             }
@@ -79,10 +81,10 @@ public class FetchUserSubmissionListUseCase extends FetchItemsUseCase<CFUserSubm
     }
 
     @Override
-    protected void process(CFUserSubmission response) {
+    protected void process(UserSubmissionApiResponse response) {
         entryList= response.getResultSubmissionList();
 
-        for(CFUserSubmissionEntry entry: entryList){
+        for(UserSubmissionEntry entry: entryList){
             UserSubmissionModel model= new UserSubmissionModel(entry.getId(),entry.getVerdict());
             mList.add(model);
         }

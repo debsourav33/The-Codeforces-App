@@ -1,11 +1,10 @@
 package com.example.codeforcesapp.networking.Contest;
 
+import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.example.codeforcesapp.data.contest.CFContest;
-import com.example.codeforcesapp.data.contest.CFContestEntry;
+import com.example.codeforcesapp.data.contest.ContestApiResponse;
+import com.example.codeforcesapp.data.contest.ContestEntity;
 import com.example.codeforcesapp.data.contest.ContestModel;
 import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
 
@@ -17,10 +16,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public abstract class FetchContestListUseCase extends FetchItemsUseCase<CFContest, ContestModel> {
-    protected CFContest cfContest;
-    protected List<CFContestEntry> cfContestEntryList;
+public abstract class FetchContestListUseCase extends FetchItemsUseCase<ContestApiResponse, ContestEntity> {
+    protected ContestApiResponse contestApiResponse;
+    protected List<ContestEntity> contestEntityList;
     protected ArrayList<ContestModel> mList= new ArrayList<>();
+    protected List<ContestEntity> mContestEntities = new ArrayList<>();
+
+    public FetchContestListUseCase(Context context) {
+        super(context);
+    }
 
     @Override
     protected void fetchItems(boolean ignoreCacheAndForceRetrieve, final boolean notifyListeners) {
@@ -31,19 +35,19 @@ public abstract class FetchContestListUseCase extends FetchItemsUseCase<CFContes
 
         if(ignoreCacheAndForceRetrieve)  mList.clear();
 
-        Call<CFContest> call= cfApi.getContetList();
+        Call<ContestApiResponse> call= cfApi.getContestList();
 
-        call.enqueue(new Callback<CFContest>() {
+        call.enqueue(new Callback<ContestApiResponse>() {
             @Override
-            public void onResponse(Call<CFContest> call, Response<CFContest> response) {
-                cfContest = response.body();
+            public void onResponse(Call<ContestApiResponse> call, Response<ContestApiResponse> response) {
+                contestApiResponse = response.body();
 
-                if(!cfContest.getStatus().equals("OK")){
-                    notifyError(cfContest.getComment());
+                if(!contestApiResponse.getStatus().equals("OK")){
+                    notifyError(contestApiResponse.getComment());
                     return;
                 }
 
-                process(cfContest);
+                process(contestApiResponse);
 
                 if(!notifyListeners) {
                 }
@@ -51,20 +55,22 @@ public abstract class FetchContestListUseCase extends FetchItemsUseCase<CFContes
             }
 
             @Override
-            public void onFailure(Call<CFContest> call, Throwable t) {
+            public void onFailure(Call<ContestApiResponse> call, Throwable t) {
                 notifyError(NO_INTERNET);
 
             }
         });
     }
 
-    public List<CFContestEntry> fetchItemsAsSynced(){
-        Call<CFContest> call= cfApi.getContetList();
-        try {
-            Response<CFContest> response= call.execute();
-            CFContest cfContest= response.body();
 
-            return cfContest.getResultContestList();
+
+    public List<ContestEntity> fetchItemsAsSynced(){
+        Call<ContestApiResponse> call= cfApi.getContestList();
+        try {
+            Response<ContestApiResponse> response= call.execute();
+            ContestApiResponse contest = response.body();
+
+            return contest.getResultContestList();
 
 
         } catch (IOException e) {
@@ -76,12 +82,12 @@ public abstract class FetchContestListUseCase extends FetchItemsUseCase<CFContes
 
 
     @Override
-    protected abstract void process(CFContest response);
+    protected abstract void process(ContestApiResponse response);
 
     @Override
     public void notifyError(String errorMsg) {
         //Log.i("dodo", cfContest.getStatus());
-        for(OnFetchItemsListener<ContestModel> listener: getListeners())
+        for(OnFetchItemsListener<ContestEntity> listener: getListeners())
             listener.onFetchItemListFetchFailed(errorMsg);
     }
 
@@ -89,7 +95,7 @@ public abstract class FetchContestListUseCase extends FetchItemsUseCase<CFContes
     public void notifySuccess() {
         Log.i("dodo", "notifySuccess: Yes");
 
-        for(OnFetchItemsListener<ContestModel> listener: getListeners())
-            listener.onItemListFetched(mList);
+        for(OnFetchItemsListener<ContestEntity> listener: getListeners())
+            listener.onItemListFetched(mContestEntities);
     }
 }

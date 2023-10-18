@@ -64,7 +64,7 @@ public class OldContestsRecyclerAdapter extends RecyclerView.Adapter<OldContests
         return contests.size();
     }
 
-    public void bindData(ArrayList<ContestModel> data){
+    public void bindData(List<ContestModel> data){
         contests = data;
         notifyDataSetChanged();
 

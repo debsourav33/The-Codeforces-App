@@ -1,18 +1,18 @@
-package com.example.codeforcesapp.data.contest;
+package com.example.codeforcesapp.data.userinfo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class CFContest {
+public class UserInfoApiResponse {
     @SerializedName("status")
     @Expose
     String status;
 
     @SerializedName("result")
     @Expose
-    List<CFContestEntry> resultContestList;
+    List<UserInfo> resultUserInfoList;
 
     @SerializedName("comment")
     @Expose
@@ -34,11 +34,11 @@ public class CFContest {
         this.status = status;
     }
 
-    public List<CFContestEntry> getResultContestList() {
-        return resultContestList;
+    public List<UserInfo> getResultUserInfoList() {
+        return resultUserInfoList;
     }
 
-    public void setResultContestList(List<CFContestEntry> resultContestList) {
-        this.resultContestList = resultContestList;
+    public void setResultUserInfoList(List<UserInfo> resultUserInfoList) {
+        this.resultUserInfoList = resultUserInfoList;
     }
 }

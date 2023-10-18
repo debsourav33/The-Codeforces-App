@@ -1,7 +1,9 @@
 package com.example.codeforcesapp.networking.Contest;
 
-import com.example.codeforcesapp.data.contest.CFContest;
-import com.example.codeforcesapp.data.contest.CFContestEntry;
+import android.content.Context;
+
+import com.example.codeforcesapp.data.contest.ContestApiResponse;
+import com.example.codeforcesapp.data.contest.ContestEntity;
 import com.example.codeforcesapp.data.contest.ContestModel;
 import com.example.codeforcesapp.data.contest.ContestStatus;
 
@@ -11,23 +13,24 @@ public class FetchUpcomingContestListUseCase extends FetchContestListUseCase {
 
     public static FetchUpcomingContestListUseCase fetchUpcomingContestListUseCase;
 
-    private FetchUpcomingContestListUseCase(){
+    private FetchUpcomingContestListUseCase(Context context){
+        super(context);
 
     }
 
-    public static FetchUpcomingContestListUseCase getInstance() {
+    public static FetchUpcomingContestListUseCase getInstance(Context context) {
         if(fetchUpcomingContestListUseCase==null){
-            fetchUpcomingContestListUseCase= new FetchUpcomingContestListUseCase();
+            fetchUpcomingContestListUseCase= new FetchUpcomingContestListUseCase(context);
         }
 
         return fetchUpcomingContestListUseCase;
     }
 
     @Override
-    protected void process(CFContest cfContest) {
-        cfContestEntryList = cfContest.getResultContestList();
+    protected void process(ContestApiResponse contest) {
+        contestEntityList = contest.getResultContestList();
 
-        for (CFContestEntry contestEntry : cfContestEntryList) {
+        for (ContestEntity contestEntry : contestEntityList) {
             ContestModel cm= new ContestModel(contestEntry);
 
             if(cm.getContestStatus() == ContestStatus.FINISHED)  continue;

@@ -6,9 +6,8 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.room.Database;
 
-import com.example.codeforcesapp.data.contest.CFContestEntry;
+import com.example.codeforcesapp.data.contest.ContestEntity;
 import com.example.codeforcesapp.networking.Contest.FetchContestListUseCase;
 import com.example.codeforcesapp.networking.Contest.FetchUpcomingContestListUseCase;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class ContestCacheService extends Service {
     public static final String TAG = ContestCacheService.class.getSimpleName();
     FetchContestListUseCase fetchContestListUseCase;
-    ContestDataBaseRepository repository;
+    ContestRepository repository;
 
     @Nullable
     @Override
@@ -30,20 +29,20 @@ public class ContestCacheService extends Service {
         super.onCreate();
 
         Log.i(TAG, "onCreate called");
-        fetchContestListUseCase = FetchUpcomingContestListUseCase.getInstance();
+        fetchContestListUseCase = FetchUpcomingContestListUseCase.getInstance(this);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //Note: The context within the service will not be visible until onStart or onStartCommand in services
         Log.i(TAG, "onStartCommand called");
-        repository = new ContestDataBaseRepository(this);
+        repository = new ContestRepository(this);
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<CFContestEntry> contests = fetchContestListUseCase.fetchItemsAsSynced();
-                for(CFContestEntry contest: contests){
+                List<ContestEntity> contests = fetchContestListUseCase.fetchItemsAsSynced();
+                for(ContestEntity contest: contests){
                     repository.insert(contest);
                 }
 

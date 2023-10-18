@@ -17,7 +17,7 @@ public class ContestModel implements Parcelable, Comparable {
         setStartTimeFormatted(unixToDateTime(Long.parseLong(startTime)));
     }
 
-    public ContestModel(CFContestEntry contestEntry){
+    public ContestModel(ContestEntity contestEntry){
         this.name = contestEntry.getName();
         this.startTime= contestEntry.getStartTime();
         this.durationSec= contestEntry.getDurationSec();

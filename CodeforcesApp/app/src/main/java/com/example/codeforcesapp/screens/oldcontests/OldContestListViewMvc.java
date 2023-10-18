@@ -10,7 +10,7 @@ import com.example.codeforcesapp.R;
 import com.example.codeforcesapp.data.contest.ContestModel;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class OldContestListViewMvc extends BaseNavigationView<OldContestListViewMvc.SomeViewListener> {
 
@@ -36,7 +36,7 @@ public class OldContestListViewMvc extends BaseNavigationView<OldContestListView
 
     }
 
-    public void bindData(ArrayList<ContestModel> data){
+    public void bindData(List<ContestModel> data){
         adapter.bindData(data);
     }
 }

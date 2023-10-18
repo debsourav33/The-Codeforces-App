@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class CFUserSubmission {
+public class UserSubmissionApiResponse {
     @SerializedName("status")
     @Expose
     String status;
 
     @SerializedName("result")
     @Expose
-    List<CFUserSubmissionEntry> resultSubmissionList;
+    List<UserSubmissionEntry> resultSubmissionList;
 
     @SerializedName("comment")
     @Expose
@@ -34,11 +34,11 @@ public class CFUserSubmission {
         this.status = status;
     }
 
-    public List<CFUserSubmissionEntry> getResultSubmissionList() {
+    public List<UserSubmissionEntry> getResultSubmissionList() {
         return resultSubmissionList;
     }
 
-    public void setResultSubmissionList(List<CFUserSubmissionEntry> resultSubmissionList) {
+    public void setResultSubmissionList(List<UserSubmissionEntry> resultSubmissionList) {
         this.resultSubmissionList = resultSubmissionList;
     }
 }

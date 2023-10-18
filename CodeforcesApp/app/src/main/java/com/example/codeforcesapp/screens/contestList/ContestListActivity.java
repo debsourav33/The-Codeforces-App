@@ -13,7 +13,7 @@ import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;
 
 import java.util.ArrayList;
 
-public class ContestListActivity extends BaseNavigationActivity implements ContestListViewMvc.Listener, FetchItemsUseCase.OnFetchItemsListener<ContestModel> {
+public class ContestListActivity extends BaseNavigationActivity implements ContestListViewMvc.Listener {
     ContestListViewMvc mViewMvc;
 
     //FetchContestListUseCase fetchContestListUseCase;
@@ -25,7 +25,7 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
 
         mViewMvc = getViewMvcFactory().getContestListViewMvc(null);
 
-        fetchUpcomingContestListUseCase=  FetchUpcomingContestListUseCase.getInstance();
+        fetchUpcomingContestListUseCase=  FetchUpcomingContestListUseCase.getInstance(this);
         //Intent intent = new Intent(this, ContestCacheService.class);
         //startService(intent);
 
@@ -45,19 +45,17 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
 
         mViewMvc.registerListener(this);
 
-        fetchUpcomingContestListUseCase.registerListener(this);
-        fetchUpcomingContestListUseCase.fetchItems(false);
+        //fetchUpcomingContestListUseCase.registerListener(this);
+        //fetchUpcomingContestListUseCase.fetchItems(false);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        //mViewMvc.unregisterListener(this);
-        //fetchUpcomingContestListUseCase.unregisterListener(this);
 
         mViewMvc.unregisterListener(this);
-        fetchUpcomingContestListUseCase.unregisterListener(this);
+        //fetchUpcomingContestListUseCase.unregisterListener(this);
     }
 
     private void passItems(ArrayList<ContestModel> contestModelList) {
@@ -70,16 +68,4 @@ public class ContestListActivity extends BaseNavigationActivity implements Conte
         //Toast.makeText(this, contestModel.getNames()+" "+contestModel.getStartTime(), Toast.LENGTH_SHORT).show();
         //ListItemDetailsActivity.start(this, contestModel);
     }
-
-
-    @Override
-    public void onItemListFetched(ArrayList<ContestModel> list) {
-        passItems(list);
-    }
-
-    @Override
-    public void onFetchItemListFetchFailed(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
-    }
-
 }

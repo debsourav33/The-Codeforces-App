@@ -3,7 +3,7 @@ package com.example.codeforcesapp.data.userinfo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CFUserInfoEntry {
+public class UserInfo {
     @SerializedName("firstName")
     @Expose
     String firstName;

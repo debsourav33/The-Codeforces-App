@@ -1,9 +1,10 @@
 package com.example.codeforcesapp.networking.UserInfo;
 
+import android.content.Context;
 import android.util.Log;
 
-import com.example.codeforcesapp.data.userinfo.CFUserInfo;
-import com.example.codeforcesapp.data.userinfo.CFUserInfoEntry;
+import com.example.codeforcesapp.data.userinfo.UserInfoApiResponse;
+import com.example.codeforcesapp.data.userinfo.UserInfo;
 import com.example.codeforcesapp.data.userinfo.UserInfoModel;
 import com.example.codeforcesapp.networking.common.FetchItemsUseCase;
 
@@ -14,9 +15,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FetchUserInfoUseCase extends FetchItemsUseCase<CFUserInfo, UserInfoModel> {
-    private CFUserInfo cfUserInfo;
-    private List<CFUserInfoEntry> cfUserInfoEntryList;
+public class FetchUserInfoUseCase extends FetchItemsUseCase<UserInfoApiResponse, UserInfoModel> {
+    private UserInfoApiResponse cfUserInfo;
+    private List<UserInfo> cfUserInfoEntryList;
     private ArrayList<UserInfoModel> mList= new ArrayList<>();
 
     private String userHandler;
@@ -24,13 +25,13 @@ public class FetchUserInfoUseCase extends FetchItemsUseCase<CFUserInfo, UserInfo
 
     public static FetchUserInfoUseCase fetchUserInfoUseCase;
 
-    private FetchUserInfoUseCase(){
-
+    private FetchUserInfoUseCase(Context ctx){
+        super(ctx);
     }
 
-    public static FetchUserInfoUseCase getInstance() {
+    public static FetchUserInfoUseCase getInstance(Context ctx) {
         if(fetchUserInfoUseCase==null){
-            fetchUserInfoUseCase= new FetchUserInfoUseCase();
+            fetchUserInfoUseCase= new FetchUserInfoUseCase(ctx);
         }
 
         return fetchUserInfoUseCase;
@@ -47,11 +48,11 @@ public class FetchUserInfoUseCase extends FetchItemsUseCase<CFUserInfo, UserInfo
 
         if(ignoreCacheAndForceRetrieve)  mList.clear();
 
-        Call<CFUserInfo> call= cfApi.getUserInfo(userHandler);
+        Call<UserInfoApiResponse> call= cfApi.getUserInfo(userHandler);
 
-        call.enqueue(new Callback<CFUserInfo>() {
+        call.enqueue(new Callback<UserInfoApiResponse>() {
             @Override
-            public void onResponse(Call<CFUserInfo> call, Response<CFUserInfo> response) {
+            public void onResponse(Call<UserInfoApiResponse> call, Response<UserInfoApiResponse> response) {
                 cfUserInfo = response.body();
 
 
@@ -73,17 +74,19 @@ public class FetchUserInfoUseCase extends FetchItemsUseCase<CFUserInfo, UserInfo
             }
 
             @Override
-            public void onFailure(Call<CFUserInfo> call, Throwable t) {
+            public void onFailure(Call<UserInfoApiResponse> call, Throwable t) {
                 notifyError(NO_INTERNET);
             }
         });
     }
 
+
+
     @Override
-    protected void process(CFUserInfo cfUserInfo) {
+    protected void process(UserInfoApiResponse cfUserInfo) {
         cfUserInfoEntryList= cfUserInfo.getResultUserInfoList();
 
-        for(CFUserInfoEntry entry: cfUserInfoEntryList){
+        for(UserInfo entry: cfUserInfoEntryList){
             UserInfoModel userInfoModel= new UserInfoModel.Builder()
                                         .firstName(entry.getFirstName())
                                         .lastName(entry.getLastName())

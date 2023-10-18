@@ -10,6 +10,7 @@ import com.example.codeforcesapp.screens.navigationviews.BaseNavigationActivity;
 import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserInfoActivity extends BaseNavigationActivity implements FetchItemsUseCase.OnFetchItemsListener<UserInfoModel>, UserInfoViewMvc.OnUserHandlerChangeListener {
     UserInfoViewMvc mViewMvc;
@@ -21,7 +22,7 @@ public class UserInfoActivity extends BaseNavigationActivity implements FetchIte
 
         mViewMvc= getViewMvcFactory().getUserInfoViewMvc(null);
 
-        fetchUserInfoUseCase= FetchUserInfoUseCase.getInstance();
+        fetchUserInfoUseCase= FetchUserInfoUseCase.getInstance(this);
 
         setContentView(mViewMvc.getRootView());
     }
@@ -57,7 +58,7 @@ public class UserInfoActivity extends BaseNavigationActivity implements FetchIte
     }
 
     @Override
-    public void onItemListFetched(ArrayList<UserInfoModel> list) {
+    public void onItemListFetched(List<UserInfoModel> list) {
         passItem(list.get(0));
     }
 

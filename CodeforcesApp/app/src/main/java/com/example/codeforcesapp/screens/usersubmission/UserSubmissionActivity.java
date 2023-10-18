@@ -12,6 +12,7 @@ import com.example.codeforcesapp.screens.navigationviews.BaseNavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class UserSubmissionActivity extends BaseNavigationActivity implements FetchItemsUseCase.OnFetchItemsListener<UserSubmissionModel>,  UserSubmissionViewMvc.OnUserHandlerChangeListener{
 
@@ -23,7 +24,7 @@ public class UserSubmissionActivity extends BaseNavigationActivity implements Fe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userSubmissionViewMvc= getViewMvcFactory().getUserSubmissionViewMvc(null);
-        fetchUserSubmissionListUseCase = FetchUserSubmissionListUseCase.getInstance();
+        fetchUserSubmissionListUseCase = FetchUserSubmissionListUseCase.getInstance(this);
 
 
         setContentView(userSubmissionViewMvc.getRootView());
@@ -69,7 +70,7 @@ public class UserSubmissionActivity extends BaseNavigationActivity implements Fe
     }
 
     @Override
-    public void onItemListFetched(ArrayList<UserSubmissionModel> list) {
+    public void onItemListFetched(List<UserSubmissionModel> list) {
         initVerdictMap();
 
         for(UserSubmissionModel model: list) {

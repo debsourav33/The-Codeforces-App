@@ -3,7 +3,7 @@ package com.example.codeforcesapp.data.usersubmission;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CFUserSubmissionEntry {
+public class UserSubmissionEntry {
     @SerializedName("id")
     @Expose
     String id;
